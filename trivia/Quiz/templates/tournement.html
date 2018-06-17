@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2>{{ tournement.name }}</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 p-3">
+          <ul class="list-group">
+            <li class="list-group-item active">Details</li>
+            <li class="list-group-item">Category:  {{ tournement.category }}</li>
+            <li class="list-group-item">Difficulty:  {{ tournement.difficulty }}</li>
+            <li class="list-group-item">End Time:  {{ tournement.end_time }}</li>
+          </ul>
+      </div>
+      <div class="col-md-6 p-3">
+          <ul class="list-group">
+            <li class="list-group-item active">Players</li>
+            {% for player in players %}
+              <li class="list-group-item">{{player}}</li>
+            {% endfor %}
+          </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <form method="post" action="">
+        {% csrf_token %}
+          <input type="hidden" name="tournement_to_join" value='{{ tournement.id }}'/>
+          <button class="btn btn-primary m-2" style="width: 90%" href="#">Join Tournement</button>
+        </form>
+      </div>
+      <div class="col-3">
+        {% if request.user.username in players and notPlayed%}
+            <a class="btn btn-primary m-2" style="width: 90%" href="{% url 'game' tournement.id %}">
+              Start Quizz</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

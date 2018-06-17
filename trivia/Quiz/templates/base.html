@@ -1,0 +1,59 @@
+<!DOCTYPTE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- PAGE settings -->
+        <!--<link rel="icon" href="https://templates.pingendo.com/assets/Pingendo_favicon.ico"> -->
+        {% block title %}<title>Quizzical</title>{% endblock %}
+        
+        <meta name="author" content="Richard Gray">
+        <!-- CSS dependencies -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'theme.css' %}" type="text/css"> 
+    </head>
+    <body class="bg-dark text-info" onload="hide_qs()">
+        {% block navbar %}
+            <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+                <div class="container">
+                <a class="navbar-brand" href="/"><b style="color: black">Quizzical&nbsp;</b></a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarPrimarySupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span> </button>
+                <div class="collapse navbar-collapse text-center justify-content-end" id="navbarPrimarySupportedContent">
+                    <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}" style="color: black"> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'tournements_home' %}" style="color: black"> Tournements</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'high_scores' %}" style="color: black"> High Scores</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout'%}?next={{request.path}}" style="color: black"> Logout</a>
+                      </li>
+                    {% else %}
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login'%}?next={{request.path}}" style="color: black"> Login</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'add_user' %}" style="color: black"> Sign Up</a>
+                      </li>
+                    {% endif %}
+                    </ul>
+                </div>
+                </div>
+            </nav>
+            
+        {% endblock %}    
+        {% block content %}
+        
+        {% endblock %}
+    </body>
+</html>
+

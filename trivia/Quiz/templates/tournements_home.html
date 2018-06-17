@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+    
+  <div class="py-5 text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h5 class="display-4 text-capitalize">Tournements</h5>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 p-3">
+          <a class="card my-4" href="{% url 'view_current' %}">
+            <div class="card-header bg-primary">
+              <h5 class="mb-0 text-center">View Active Tournements</h5>
+            </div>
+            <div class="card-body">
+              <p class="card-text">See what tournements are available to be played right now</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4 p-3">
+          <a class="card my-4" href="{% url 'view_future' %}">
+            <div class="card-header bg-primary">
+              <h5 class="mb-0 text-center">View Upcoming Tournements</h5>
+            </div>
+            <div class="card-body">
+              <p class="card-text">See what tournements are coming up soon</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4 p-3">
+          {% if user.is_staff %}
+          <a class="card my-4" href="{% url 'create_tournement' %}">
+            <div class="card-header bg-primary">
+              <h5 class="mb-0 text-center">Create new Tournement</h5>
+            </div>
+            <div class="card-body">
+              <p class="card-text">Set when it will take place, catagory, and difficulty.</p>
+            </div>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}

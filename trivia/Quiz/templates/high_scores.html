@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2> High Scores</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 p-3">
+        <table class="table table-hover table-striped table-bordered">
+          <thead class="thead-inverse">
+            <tr class="bg-info">
+              <th scope="col">#</th>
+              <th scope="col">Difficulty</th>
+              <th scope="col">Category</th>
+              <th scope="col">Name</th>
+              <th scope="col">Score</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for hs in highScores %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td>{{ hs.tournement_id.difficulty }}</td>
+              <td>{{ hs.tournement_id.category }}</td>
+              <td>{{ hs.player_id.username }}</td>
+              <td>{{ hs.score }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

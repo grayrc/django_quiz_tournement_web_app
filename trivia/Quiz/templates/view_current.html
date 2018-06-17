@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <div class="py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h2>Active Tournements</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9 p-3">
+          <ul class="list-group">
+            <li class="list-group-item">Active Tournements</li>
+              {% for t in tournements %}
+
+                <a href="{% url 'tournement' t.id %}"
+                class="list-group-item list-group-item-action active">
+                  <div>{{t.name}}:</div> <div align="right">Ends: {{t.end_time}}
+                  </div>
+                </a>
+                
+              {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

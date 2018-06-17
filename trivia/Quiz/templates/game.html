@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="py-4">
+  <div class="container">
+    <div class="row">
+      <div id="q" class="col-md-9 p-3">
+        <form method="post" action="">
+        {% csrf_token %}
+          <ul class="list-group">
+            <li class="list-group-item">{{ question }}</li>
+            <li class="list-group-item active">
+              <div class="form-check form-check-inline"> <label class="form-check-label">
+                <input class="form-check-input" type="radio" value={{ answers.0 }}
+                id="inlineRadio1" name="radio_answers"> {{ answers.0 }}
+              </label> </div>
+            </li>
+            <li class="list-group-item active">
+              <div class="form-check form-check-inline"> <label class="form-check-label">
+                <input class="form-check-input" type="radio" value={{ answers.1 }}
+                id="inlineRadio1" name="radio_answers"> {{ answers.1 }}
+              </label> </div>
+            </li>
+            <li class="list-group-item active">
+              <div class="form-check form-check-inline"> <label class="form-check-label">
+                <input class="form-check-input" type="radio" value={{ answers.2 }}
+                id="inlineRadio1" name="radio_answers"> {{ answers.2 }}
+              </label> </div>
+            </li>
+            <li class="list-group-item active">
+              <div class="form-check form-check-inline"> <label class="form-check-label">
+                <input class="form-check-input" type="radio" value={{ answers.3 }}
+                id="inlineRadio1" name="radio_answers"> {{ answers.3 }}
+              </label> </div>
+            </li>
+          </ul>
+          <input type="hidden" id="correct", name="correct" value={{ correct }}>
+          <button type="submit" class="btn btn-primary my-2">Submit Answer</button>
+
+        </form>
+      </div>
+      <div id="a" class="col-md-9 p-3">
+        <h3>{{ feedback }}</h3>
+        <div id="b">
+          <button type="button" class="btn btn-primary my-2" onclick="show_qs()">Continue</button>
+        </div>
+      </div>
+      {% if q_n > 9 %}
+      <script>document.getElementById("b").style.display = "none";</script>
+        <div class="col-md-9 p-3">
+          <form method="post" action="{% url 'tournements_home' %}">
+          {% csrf_token %}
+            <input type="hidden" id="t_id" name="t_id" value="{{ tournement_id }}">
+            <button type="submit" class="btn btn-primary my-2" name="action" value="endQuiz">Return to menu</button>
+          </form>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  function show_qs(){
+    document.getElementById("q").style.display = "block";
+    document.getElementById("a").style.display = "none";
+  }
+  function hide_qs(){
+    document.getElementById("q").style.display = "none";
+  }
+
+</script>
+
+
+{% endblock %}
